@@ -1,121 +1,74 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
 import './App.css'
+import Cabecalho from './components/cabecalho.jsx'
+import CardCurso from './components/CardCurso.jsx'
+import Destaque from './components/Destaque.jsx'
+
+const cursos = [
+  {
+    nome: 'Desenvolvimento de Sistemas',
+    duracao: '1200 horas',
+    modalidade: 'Presencial',
+    nivel: 'Técnico',
+  },
+  {
+    nome: 'Redes de Computadores',
+    duracao: '1000 horas',
+    modalidade: 'Presencial',
+    nivel: 'Técnico',
+  },
+  {
+    nome: 'Manutenção de Computadores',
+    duracao: '160 horas',
+    modalidade: 'Presencial',
+    nivel: 'Qualificação profissional',
+  },
+  {
+    nome: 'Programação Web',
+    duracao: '240 horas',
+    modalidade: 'EAD',
+    nivel: 'Aperfeiçoamento',
+  },
+  {
+    nome: 'Banco de Dados',
+    duracao: '200 horas',
+    modalidade: 'EAD',
+    nivel: 'Aperfeiçoamento',
+  },
+  {
+    nome: 'Desenvolvimento Mobile',
+    duracao: '240 horas',
+    modalidade: 'EAD',
+    nivel: 'Aperfeiçoamento',
+  },
+]
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
+    <main className="catalogo">
+      <Cabecalho />
+      <section className="secao-destaques" aria-label="Destaques da formação">
+        <Destaque
+          titulo="Aprenda fazendo"
+          texto="Desenvolva projetos durante sua formação."
+        />
+        <Destaque
+          titulo="Prepare-se para o mercado"
+          texto="Adquira conhecimentos valorizados na área de tecnologia."
+        />
+        <Destaque
+          titulo="Construa seu futuro"
+          texto="Encontre uma formação alinhada aos seus objetivos profissionais."
+        />
       </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
+      <section className="lista-cursos" aria-labelledby="titulo-cursos">
+        <h2 id="titulo-cursos">Cursos disponíveis</h2>
+        <div className="grade-cursos">
+          {cursos.map((curso) => (
+            <CardCurso key={curso.nome} {...curso} />
+          ))}
         </div>
       </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+    </main>
   )
 }
 
